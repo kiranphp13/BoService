@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\Downloads\\BoService\\BoService\\BoService\\BoService.csproj": {}
+    "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\Downloads\\BoService\\BoService\\BoService\\BoService.csproj": {
+    "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\Downloads\\BoService\\BoService\\BoService\\BoService.csproj",
+        "projectUniqueName": "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj",
         "projectName": "BoService",
-        "projectPath": "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\Downloads\\BoService\\BoService\\BoService\\BoService.csproj",
-        "packagesPath": "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\Downloads\\BoService\\BoService\\BoService\\obj\\",
+        "projectPath": "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj",
+        "packagesPath": "C:\\Users\\subbaraodv\\.nuget\\packages\\",
+        "outputPath": "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\harikrishnav.ESNTECHNOLOGIES\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\subbaraodv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
