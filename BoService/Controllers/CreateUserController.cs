@@ -26,9 +26,11 @@ namespace BoService.Controllers
             {
                 Db.Connection.Open();
                 bool bIsValidUser = false;
+
                 BoService.Models.Users objUser = new BoService.Models.Users(Db);
 
                 bool bIsUserCreated= false;
+
                 
                 bIsValidUser = objUser.IsUserRegistered();
                 if(bIsValidUser == false)
