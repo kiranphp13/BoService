@@ -28,19 +28,19 @@ namespace BoService.Controllers
             {
                 Db.Connection.Open();
                 bool bIsValidUser = false;
-                string username = value.UserName;
+                string username = value.Name;
                 string password = value.Password;
                 BoService.Models.Users objUsers = new BoService.Models.Users(Db);
                
-                Users lstobjUsers = objUsers.GetUsersList(value.UserName, value.Password).FirstOrDefault();
+                Users lstobjUsers = objUsers.GetUsersList(value.Email, value.Password).FirstOrDefault();
 
                 //bIsValidUser = objUsers.IsUserRegistered();
                 if(lstobjUsers!=null)
                 {
                     var jwt = new BoService.Authentication.JwtService(_config);
-                    var token = jwt.GenerateSecurityToken(value.UserName);
+                    var token = jwt.GenerateSecurityToken(value.Name);
 
-                    if(lstobjUsers.Role.Contains("Member"))
+                    if(lstobjUsers.Role.Contains("Analyst"))
                     {
                         response.Add("status", "success");
                         response.Add("User Status", "Valid User Credential...");

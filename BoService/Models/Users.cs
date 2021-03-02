@@ -11,12 +11,13 @@ namespace BoService.Models
         public string Password { get; set; }
 
         public string Email { get; set; }
+
         public string Phone { get; set; }
 
-
-        public string UserName { get; set; }
-       
+           
         public string Role { get; set; }
+
+        public int ID { get; set; }
 
         internal BoAppDB Db { get; set; }
 
@@ -26,7 +27,8 @@ namespace BoService.Models
             Password = string.Empty;
             Email = string.Empty;
             Phone = string.Empty;
-
+            Role = string.Empty;
+            ID = 0;
         }
 
         internal Users(BoAppDB db)
@@ -38,13 +40,13 @@ namespace BoService.Models
             Phone = string.Empty;
         }
 
-        public List<Users> GetUsersList(string strUserName, string strUserOassword)
+        public List<Users> GetUsersList(string strEMail, string strUserOassword)
         {
             List<Users> returnList = new List<Users>();
             try
             {
                 using var cmd = Db.Connection.CreateCommand();
-                string commandText = "SELECT * FROM edc.bousers where name = " + "'" + strUserName + "'" + "and password = " + "'" + strUserOassword + "'";
+                string commandText = "SELECT * FROM edc.bousers where Email = " + "'" + strEMail + "'" + "and password = " + "'" + strUserOassword + "'";
                 cmd.CommandText = commandText;
                 returnList = ReadAllAsync(cmd.ExecuteReader());
             }
@@ -88,7 +90,7 @@ namespace BoService.Models
             bool bIsUserRegistered = false;
             try
             {
-                List<Users> result = GetUsersList(Name, Password);
+                List<Users> result = GetUsersList(Email, Password);
                 if (result != null && result.Count > 0)
                 {
                     bIsUserRegistered = true;
@@ -104,6 +106,25 @@ namespace BoService.Models
                 bIsUserRegistered = false;
             }
             return bIsUserRegistered;
+        }
+
+        public bool CreateUser(Users userData)
+        {
+            bool bIsRecordAdded = false;
+            try
+            {
+                
+                string Query = "insert into edc.bousers(Name,Password,Email,Phone,Role,ID) values('" + userData.Name + "','" + userData.Password + "','" + userData.Email + "','" + userData.Phone + "','" + userData.Role + "','" + userData.ID + "');";
+                var cmd = Db.Connection.CreateCommand();
+                cmd.CommandText = Query;
+                cmd.ExecuteNonQuery();
+                bIsRecordAdded = true;
+            }
+            catch (Exception ex)
+            {
+                bIsRecordAdded = false;
+            }
+            return bIsRecordAdded;
         }
     }
 }
