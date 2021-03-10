@@ -49,8 +49,9 @@ namespace BoService.Models
             List<User> returnList = new List<User>();
             try
             {
+                string strEncryptedPassword = EncryptPassword(strUserOassword);
                 using var cmd = Db.Connection.CreateCommand();
-                string commandText = "SELECT * FROM edc.bousers where username = " + "'" + strUserName + "'" + "and password = " + "'" + strUserOassword + "'";
+                string commandText = "SELECT * FROM edc.bousers where username = " + "'" + strUserName + "'" + "and password = " + "'" + strEncryptedPassword + "'";
                 cmd.CommandText = commandText;
                 returnList = ReadAllAsync(cmd.ExecuteReader());
             }
@@ -212,8 +213,8 @@ namespace BoService.Models
             bool bIsRecordAdded = false;
             try
             {
-
-                string Query = "update edc.bousers set FullName='" + userData.FullName + "',UserName='" + userData.UserName + "',Password='" + userData.Password + "',Email='" + userData.Email + "'," +
+                string strEncryptedPassword = EncryptPassword(userData.Password);
+                string Query = "update edc.bousers set FullName='" + userData.FullName + "',UserName='" + userData.UserName + "',Password='" + strEncryptedPassword + "',Email='" + userData.Email + "'," +
                     "Phone='" + userData.Phone + "',Role='" + userData.Role + "',Status='" + userData.Status + "',Address='" + userData.Address + "' where id=" + userData.Id + ";";
                 var cmd = Db.Connection.CreateCommand();
                 cmd.CommandText = Query;
@@ -225,6 +226,50 @@ namespace BoService.Models
                 bIsRecordAdded = false;
             }
             return bIsRecordAdded;
+        }
+
+        public string EncryptPassword(string strPassword)
+        {
+            string strReturnPassword = string.Empty;
+
+            try
+            {
+                if (string.IsNullOrEmpty(strPassword))
+                {
+                    throw new ArgumentNullException("Password should not be null or empty...");
+                }
+                else
+                {
+                    strReturnPassword = SecurePassword.EncryptPassword(strPassword, SecurePassword.EncDecType.BASE64);
+                }
+            }
+            catch (Exception Ex)
+            {
+
+            }
+            return strReturnPassword;
+        }
+
+        public string DecryptPassword(string strPassword)
+        {
+            string strReturnPassword = string.Empty;
+
+            try
+            {
+                if (string.IsNullOrEmpty(strPassword))
+                {
+                    throw new ArgumentNullException("Password should not be null or empty...");
+                }
+                else
+                {
+                    strReturnPassword = SecurePassword.DecryptPassword(strPassword, SecurePassword.EncDecType.BASE64);
+                }
+            }
+            catch (Exception Ex)
+            {
+
+            }
+            return strReturnPassword;
         }
     }
 }
