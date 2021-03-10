@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BoService.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace BoService.Controllers
 {
@@ -11,15 +13,16 @@ namespace BoService.Controllers
     public class CreateUserController : ControllerBase
     {
         public BoAppDB Db { get; }
-
-        public CreateUserController(BoAppDB db)
+        private IConfiguration _config;
+        public CreateUserController(BoAppDB db, IConfiguration config)
         {
             Db = db;
+            _config = config;
         }
 
         // POST api/blog
         [HttpPost]
-        public Dictionary<string, object> Post([FromBody] BoService.Models.Users value)
+        public Dictionary<string, object> Post([FromBody] BoService.Models.User value)
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
             try
@@ -27,19 +30,25 @@ namespace BoService.Controllers
                 Db.Connection.Open();
                 bool bIsValidUser = false;
 
-                BoService.Models.Users objUser = new BoService.Models.Users(Db);
+                BoService.Models.User objUser = new BoService.Models.User(Db);
 
-                bool bIsUserCreated= false;
+                bool bIsUserCreated = false;
+                objUser.UserName = value.UserName;
+                objUser.Password = value.Password;
 
-                
                 bIsValidUser = objUser.IsUserRegistered();
-                if(bIsValidUser == false)
+                if (bIsValidUser == false)
                 {
                     bIsUserCreated = objUser.CreateUser(value);
-                    if(bIsUserCreated == true)
+                    if (bIsUserCreated == true)
                     {
-                        response.Add("Status", "success");
-                        response.Add("User Created", "User is added successfully...");
+                        var jwt = new BoService.Authentication.JwtService(_config);
+                        var token = jwt.GenerateSecurityToken(value.UserName);
+
+                        response.Add("Status", "Success");
+                        response.Add("Message", "User is added successfully...");
+                        response.Add("token", token);
+                        response.Add("user", objUser);
                     }
                     else
                     {

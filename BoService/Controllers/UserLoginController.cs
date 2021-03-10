@@ -20,48 +20,49 @@ namespace BoService.Controllers
             _config = config;
         }
         // POST api/blog
-        [HttpPost]
-        public Dictionary<string, object> Post([FromBody] BoService.Models.Users value)
-        {
-            Dictionary<string, object> response = new Dictionary<string, object>();
-            try
-            {
-                Db.Connection.Open();
-                bool bIsValidUser = false;
-                string username = value.Name;
-                string password = value.Password;
-                BoService.Models.Users objUsers = new BoService.Models.Users(Db);
-               
-                Users lstobjUsers = objUsers.GetUsersList(value.Email, value.Password).FirstOrDefault();
+        //[HttpPost]
+        //public Dictionary<string, object> Post([FromBody] BoService.Models.User value)
+        //{
+        //    Dictionary<string, object> response = new Dictionary<string, object>();
+        //    try
+        //    {
+        //        Db.Connection.Open();
+        //        bool bIsValidUser = false;
+        //        string username = value.Name;
+        //        string password = value.Password;
+        //        BoService.Models.Users objUsers = new BoService.Models.Users(Db);
 
-                //bIsValidUser = objUsers.IsUserRegistered();
-                if(lstobjUsers!=null)
-                {
-                    var jwt = new BoService.Authentication.JwtService(_config);
-                    var token = jwt.GenerateSecurityToken(value.Name);
+        //        Users lstobjUsers = objUsers.GetUsersList(value.Email, value.Password).FirstOrDefault();
 
-                    if(lstobjUsers.Role.Contains("Analyst"))
-                    {
-                        response.Add("status", "success");
-                        response.Add("User Status", "Valid User Credential...");
-                        response.Add("User Token", token);
+        //        //bIsValidUser = objUsers.IsUserRegistered();
+        //        if(lstobjUsers!=null)
+        //        {
+        //            var jwt = new BoService.Authentication.JwtService(_config);
+        //            var token = jwt.GenerateSecurityToken(value.Name);
 
-                    }
+        //            if(lstobjUsers.Role.Contains("Analyst"))
+        //            {
+        //                response.Add("status", "success");
+        //                response.Add("User Status", "Valid User Credential...");
+        //                response.Add("User Token", token);
+
+        //            }
 
 
-                }
-                else
-                {
-                    response.Add("status", "Error");
-                    response.Add("message", "Invalid User Credentials...");
-                }
-            }
-            catch(Exception Ex)
-            {
-                response.Add("status", "Error");
-                response.Add("message", Ex.Message);
-            }
-            return response;
-        }
-     }
+        //        }
+        //        else
+        //        {
+        //            response.Add("status", "Error");
+        //            response.Add("message", "Invalid User Credentials...");
+        //        }
+        //    }
+        //    catch(Exception Ex)
+        //    {
+        //        response.Add("status", "Error");
+        //        response.Add("message", Ex.Message);
+        //    }
+        //    return response;
+        //}
+
+    }
 }

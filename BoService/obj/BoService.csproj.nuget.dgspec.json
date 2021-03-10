@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj": {}
+    "C:\\Projects\\EDC\\EDCBOService\\BoService\\BoService\\BoService.csproj": {}
   },
   "projects": {
-    "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj": {
+    "C:\\Projects\\EDC\\EDCBOService\\BoService\\BoService\\BoService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj",
+        "projectUniqueName": "C:\\Projects\\EDC\\EDCBOService\\BoService\\BoService\\BoService.csproj",
         "projectName": "BoService",
-        "projectPath": "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\BoService.csproj",
-        "packagesPath": "C:\\Users\\subbaraodv\\.nuget\\packages\\",
-        "outputPath": "C:\\PROJECTS\\EDC\\EDC-GIT\\BoService\\BoService\\obj\\",
+        "projectPath": "C:\\Projects\\EDC\\EDCBOService\\BoService\\BoService\\BoService.csproj",
+        "packagesPath": "C:\\Users\\azureuser\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\EDC\\EDCBOService\\BoService\\BoService\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\subbaraodv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\azureuser\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
